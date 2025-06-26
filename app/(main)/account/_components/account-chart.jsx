@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import { Bar, BarChart, CartesianGrid, Legend, Rectangle, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
 const DATE_RANGES = {

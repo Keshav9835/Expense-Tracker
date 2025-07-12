@@ -98,14 +98,18 @@ const AddTransactionForm = ({
   };
 
   useEffect(() => {
-    if (transactionResult?.success && !transactionLoading) {
-      toast.success(
-        editMode
-          ? "Transaction updated successfully"
-          : "Transaction created successfully"
-      );
-      reset();
-      router.push(`/account/${transactionResult.data.accountId}`);
+    if (!transactionLoading) {
+      if (transactionResult?.success) {
+        toast.success(
+          editMode
+            ? "Transaction updated successfully"
+            : "Transaction created successfully"
+        );
+        reset();
+        router.push(`/account/${transactionResult.data.accountId}`);
+      } else if (transactionResult?.error) {
+        toast.error(transactionResult.error);
+      }
     }
   }, [transactionResult, transactionLoading, editMode]);
 
@@ -318,16 +322,16 @@ const AddTransactionForm = ({
           className={"flex-1"}
           disabled={transactionLoading}
         >
-        {transactionLoading?(
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
-            {editMode ? "Updating..." : "Creating..."}
-          </>
-        ): editMode ? (
-          "Update Transaction"
-        ) : (
-          "Create Transaction"
-        )}
+          {transactionLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              {editMode ? "Updating..." : "Creating..."}
+            </>
+          ) : editMode ? (
+            "Update Transaction"
+          ) : (
+            "Create Transaction"
+          )}
         </Button>
       </div>
     </form>

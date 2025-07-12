@@ -40,10 +40,16 @@ export async function createTransaction(data) {
           },
         });
 
-        throw new Error("Too many requests. Please try again later.");
+        return {
+          success: false,
+          error: "Too many requests. Please try again later.",
+        };
       }
 
-      throw new Error("Request Blocked");
+      return {
+        success: false,
+        error: "Request Blocked",
+      };
     }
 
     const user = await db.user.findUnique({
@@ -271,6 +277,6 @@ export async function updateTransaction(id, data) {
     return { success: true, data: serializeAmount(transaction) };
     
   } catch (error) {
-    throw new Error(error.message)
+    throw new Error(error.message);
   }
 }

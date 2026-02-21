@@ -5,7 +5,7 @@ import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 const serializeTransaction = (obj) => {
-  const serialized = { ...obj };
+  const serialized = { ...obj }; // ...obj spreads all key-value pairs of obj into a new object → basically cloning it.
 
   if (obj.balance) {
     serialized.balance = obj.balance.toNumber();
@@ -64,6 +64,10 @@ export async function createAccount(data) {
     const serializedAccount = serializeTransaction(account);
 
     revalidatePath("/dashboard");
+    /* revalidatePath("/dashboard") tells Next.js:
+      “Next time someone requests /dashboard, don’t use the cached version. Re-fetch fresh data from the DB.”
+      On the next request to /dashboard, the updated account list appears.
+   */
 
     return { success: true, data: serializedAccount };
   } catch (error) {

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="mt-30">
       <HeroSection />
-
+      
       <section className="py-20 bg-blue-100">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -101,7 +101,7 @@ export default function Home() {
             Join thousands of users who are already managing their finances smarter with Welth
           </p>
           <Link href={"/dashboard"}>
-          <Button 
+          <Button
             size={"lg"}
             className={"bg-white text-blue-500 hover:bg-blue-100 animate-bounce"}
           >

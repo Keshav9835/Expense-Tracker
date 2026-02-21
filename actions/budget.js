@@ -75,7 +75,7 @@ export async function updateBudget(amount) {
       throw new Error("User not found");
     }
 
-    const budget = await db.budget.upsert({
+    const budget = await db.budget.upsert({ // .upsert - Insert this record if it doesn’t exist, otherwise update the existing one.
       where: {
         userId: user.id,
       },
@@ -88,7 +88,7 @@ export async function updateBudget(amount) {
       },
     });
 
-    revalidatePath("/dashboard");
+    revalidatePath("/dashboard"); // revalidatePath is like a manual “refresh” for a specific page/route’s cache in Next.js, so your UI always reflects the latest DB changes.
     return {
       success: true,
       data: { ...budget, amount: budget.amount.toNumber() },

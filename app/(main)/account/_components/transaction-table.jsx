@@ -139,8 +139,8 @@ const TransactionTable = ({ transactions }) => {
   const handleSelect = (id) => {
     setSelectedIds((current) =>
       current.includes(id)
-        ? current.filter((item) => item != id)
-        : [...current, id]
+        ? current.filter((item) => item != id) // If already selected → remove it
+        : [...current, id]                     // // If not selected → add it
     );
   };
 

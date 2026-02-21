@@ -34,9 +34,12 @@ const DATE_RANGES = {
 const AccountChart = ({ transactions }) => {
   const [dateRange, setDateRange] = useState("1M");
 
+  //This code is using useMemo to calculate a filtered and grouped transaction dataset only when transactions or dateRange changes, instead of recalculating on every render.
+
   const filteredData = useMemo(() => {
     const range = DATE_RANGES[dateRange];
     const now = new Date();
+
     const startDate = range.days
       ? startOfDay(subDays(now, range.days))
       : startOfDay(new Date(0));

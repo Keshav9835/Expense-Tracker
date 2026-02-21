@@ -159,7 +159,7 @@ export async function scanReceipt(file) {
       {
         inlineData: {
           data: base64String,
-          mimeType: file.type,
+          mimeType: file.type, //A MIME type (Multipurpose Internet Mail Extensions type) is just a label that tells the receiver what kind of file the data represents.
         },
       },
       prompt,

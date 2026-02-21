@@ -12,9 +12,9 @@ const useFetch = (cb) => {
         setError(null);
 
         try {
-            const response = await cb(...args);
-            setData(response);
-            setError(null);
+            const response = await cb(...args);// call your API function (e.g., createAccount)
+            setData(response);                 // save returned data
+            setError(null);                    // clear errors again
         } catch (error) {
             setError(error)
             toast.error(error.message)

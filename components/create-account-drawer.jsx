@@ -31,14 +31,14 @@ const CreateAccountDrawer = ({ children }) => {
   const [open, setOpen] = useState(false);
 
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-    watch,
-    reset,
+    register, // connects input fields to the form
+    handleSubmit, // wraps your submit handler
+    formState: { errors }, // contains validation errors
+    setValue, // manually update a field’s value
+    watch, // reactively read a field’s value
+    reset, // reset the whole form to defaults or new values
   } = useForm({
-    resolver: zodResolver(accountSchema),
+    resolver: zodResolver(accountSchema), // This means form validation happens automatically based on your schema.
     defaultValues: {
       name: "",
       type: "CURRENT",
@@ -68,7 +68,6 @@ const CreateAccountDrawer = ({ children }) => {
     }
   }, [error])
   
-
   const onSubmit = async (data) => {
     await createAccountFn(data);
   };
@@ -129,7 +128,7 @@ const CreateAccountDrawer = ({ children }) => {
                   type={"number"}
                   step="0.01"
                   placeholder="0.00"
-                  {...register("balance")}
+                  {...register("balance")} // {...register("fieldName")} connects the input to React Hook Form’s internal state and validation, without manually passing each prop.
                 />
                 {errors.balance && (
                   <p className="text-sm text-red-500">

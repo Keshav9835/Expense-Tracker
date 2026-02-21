@@ -45,7 +45,6 @@ const HeroSection = () => {
           <Link href="/dashboard">
             <Button size={"lg"} variant={'outline'} className={"px-8"}>Watch Demo</Button>
           </Link>
-
         </div>
         <div className="hero-image-wrapper">
           <div ref={imageRef} className="hero-image">

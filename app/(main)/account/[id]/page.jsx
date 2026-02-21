@@ -5,13 +5,16 @@ import TransactionTable from "../_components/transaction-table";
 import { BarLoader } from "react-spinners";
 import AccountChart from "../_components/account-chart";
 
-const AccountsPage = async ({ params }) => {
-  const accountData = await getAccountWithTransactions(params.id);
+const AccountsPage = async ({ params }) => { // So the params.id is the Account ID from Supabase/Prisma DB.
+  const { id } = await params; // param is just the object which contains the id, that is account/id:
+  const accountData = await getAccountWithTransactions(id);
   if (!accountData) {
     notFound();
   }
 
-  const { transactions, ...account } = accountData;
+  const { transactions, ...account } = accountData; //Take the transactions property out of accountData and store it in a variable called transactions.
+  //Put all the remaining properties of accountData into a new object called account.
+
 
   return (
     <div className="space-y-8 px-5">
